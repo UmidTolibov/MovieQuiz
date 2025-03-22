@@ -6,5 +6,5 @@ extension UIColor {
      static var yBlack: UIColor { UIColor(named: "YP Black") ?? UIColor.black}
      static var yBackground: UIColor { UIColor(named: "YP Background") ?? UIColor.darkGray }
      static var yGray: UIColor { UIColor(named: "YP Gray") ?? UIColor.gray }
-     static var yPWhite: UIColor { UIColor(named: "YP White") ?? UIColor.white}
+     static var yWhite: UIColor { UIColor(named: "YP White") ?? UIColor.white}
 }
