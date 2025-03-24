@@ -64,6 +64,7 @@ final class MovieQuizViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
     }
+    
     private func setupUI() {
         let currentQuestion = questions[currentQuestionIndex]
         let questionStepViewModel = convert(model: currentQuestion)
@@ -133,22 +134,23 @@ final class MovieQuizViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    @IBAction func yesButtonPressed(_ sender: UIButton) {
+    @IBAction private func yesButtonPressed(_ sender: UIButton) {
         sender.isEnabled = false
         let currentQuestion = questions[currentQuestionIndex]
         showAnswerResult(isCorrect:currentQuestion.correctAnswer == true)
     }
     
-    @IBAction func noButtonPressed(_ sender: UIButton) {
+    @IBAction private func noButtonPressed(_ sender: UIButton) {
         sender.isEnabled = false
         let currentQuestion = questions[currentQuestionIndex]
         showAnswerResult(isCorrect:currentQuestion.correctAnswer == false)
     }
-    struct QuizQuestion {
-        let image: String
-        let text: String
-        let correctAnswer: Bool
-    }
+}
+
+struct QuizQuestion {
+    let image: String
+    let text: String
+    let correctAnswer: Bool
 }
 
 struct QuizStepViewModel {
