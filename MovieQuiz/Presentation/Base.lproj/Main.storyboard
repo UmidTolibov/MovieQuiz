@@ -124,14 +124,12 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="NoButton" destination="7ls-vV-Ub8" id="kL3-VM-gOw"/>
-                        <outlet property="PreviewImage" destination="A2Q-Fd-595" id="VW8-W7-o9x"/>
-                        <outlet property="QuestionLabel" destination="On0-OC-pBP" id="en5-v0-S8D"/>
-                        <outlet property="QuestionTitleLabel" destination="V1q-ly-9Fd" id="F9t-Qb-ejp"/>
-                        <outlet property="YesButton" destination="OZn-Po-NoY" id="weS-zc-y5M"/>
-                        <outlet property="counterLabel" destination="zsb-r1-E6m" id="OR5-9Z-IZq"/>
-                        <outlet property="imageView" destination="A2Q-Fd-595" id="53f-my-fB1"/>
-                        <outlet property="textLabel" destination="On0-OC-pBP" id="O0O-AE-WXe"/>
+                        <outlet property="counterLabel" destination="zsb-r1-E6m" id="dhd-7W-qeQ"/>
+                        <outlet property="noButton" destination="7ls-vV-Ub8" id="XQA-q0-79A"/>
+                        <outlet property="previewImage" destination="A2Q-Fd-595" id="9Ci-qy-mSi"/>
+                        <outlet property="questionLabel" destination="On0-OC-pBP" id="lZ4-Cd-kyL"/>
+                        <outlet property="questionTitleLabel" destination="V1q-ly-9Fd" id="Wt6-sW-4WH"/>
+                        <outlet property="yesButton" destination="OZn-Po-NoY" id="3Bw-eB-r9g"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
