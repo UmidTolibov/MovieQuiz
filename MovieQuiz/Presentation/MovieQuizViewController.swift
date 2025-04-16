@@ -2,18 +2,13 @@ import UIKit
 
 final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     
-    
-    
-    
     @IBOutlet private var questionTitleLabel: UILabel!
     @IBOutlet private var previewImage: UIImageView!
     @IBOutlet private var questionLabel: UILabel!
     @IBOutlet private var noButton: UIButton!
     @IBOutlet private var yesButton: UIButton!
     @IBOutlet private var counterLabel: UILabel!
-    
     @IBOutlet private var activityIndicator: UIActivityIndicatorView!
-    
     
     private var currentQuestionIndex = 0
     private var correctAnswers = 0
@@ -22,7 +17,6 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     private var statisticService: StatisticServiceProtocol = StatisticService()
     private let alertPresenter: AlertPresenter? = AlertPresenter()
     private var currentQuestion: QuizQuestion?
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +34,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         statisticService = StatisticService()
         showLoadingIndicator()
         questionFactory?.loadData()
+        alertPresenter?.delegate = self
         
     }
     
@@ -85,7 +80,8 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         }
     }
     private func showNextQuestionOrResults() {
-        if currentQuestionIndex == questionsAmount - 1 {
+        print(currentQuestionIndex)
+        if currentQuestionIndex >= questionsAmount - 1 {
             statisticService.store(correct: correctAnswers, total: questionsAmount)
             
             let bestGame = statisticService.bestGame
@@ -101,7 +97,6 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
             Рекорд: \(bestGame.correct)/\(bestGame.total) (\(dateFormatter.string(from: bestGame.date)))
             Средняя точность: \(totalAccuracy)%
             """
-            
             let viewModel = QuizResultsViewModel(
                 title: "Этот раунд окончен!",
                 text: text,
