@@ -110,13 +110,11 @@ final class MovieQuizViewController:UIViewController, QuestionFactoryDelegate{
             let gamesCount = statisticService.gamesCount
             let totalAccuracy = String(format: "%.2f", statisticService.totalAccuracy)
             let dateFormatter = DateFormatter()
-            dateFormatter.dateStyle = .short
-            dateFormatter.timeStyle = .short
-            
+            let dateString = bestGame.date.dateTimeString
             let text = """
             Ваш результат: \(correctAnswers)/\(questionsAmount)
             Кол-во сыгранных квизов: \(gamesCount)
-            Рекорд: \(bestGame.correct)/\(bestGame.total) (\(dateFormatter.string(from: bestGame.date)))
+            Рекорд: \(bestGame.correct)/\(bestGame.total) (\(dateString))
             Средняя точность: \(totalAccuracy)%
             """
             let viewModel = QuizResultsViewModel(
@@ -148,8 +146,7 @@ final class MovieQuizViewController:UIViewController, QuestionFactoryDelegate{
     }
     
       func didReceiveNextQuestion(question: QuizQuestion?) {
-       
-        guard let question = question else {
+        guard let question  else {
             return
         }
         currentQuestion = question

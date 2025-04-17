@@ -6,7 +6,7 @@
 //
 
 import Foundation
-class MoviesLoader: MoviesLoading {
+final class MoviesLoader: MoviesLoading {
     
     private let networkClient: NetworkRouting
     
