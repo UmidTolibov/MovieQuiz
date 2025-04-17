@@ -169,12 +169,14 @@ final class MovieQuizViewController:UIViewController, QuestionFactoryDelegate{
     }
     
     @IBAction private func yesButtonPressed(_ sender: UIButton) {
+        showLoadingIndicator()
         sender.isEnabled = false
         guard let currentQuestion else { return }
         showAnswerResult(isCorrect: currentQuestion.correctAnswer)
     }
     
     @IBAction private func noButtonPressed(_ sender: UIButton) {
+        showLoadingIndicator()
         sender.isEnabled = false
         guard let currentQuestion else { return }
         showAnswerResult(isCorrect: !currentQuestion.correctAnswer)
