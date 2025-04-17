@@ -8,7 +8,11 @@
 import Foundation
 class MoviesLoader: MoviesLoading {
     
-    let networkClient = NetworkClient()
+    private let networkClient: NetworkRouting
+     
+     init(networkClient: NetworkRouting = NetworkClient()) {
+         self.networkClient = networkClient
+     }
     
     var mostPopularMoviesUrl: URL {
         guard let url = URL(string: "https://tv-api.com/en/API/Top250Movies/k_zcuw1ytf") else {
@@ -16,6 +20,7 @@ class MoviesLoader: MoviesLoading {
         }
         return url
     }
+    
     func loadMovies(handler: @escaping (Result<MostPopularMovies, any Error>) -> Void) {
         print(mostPopularMoviesUrl)
         networkClient.fetch(url: mostPopularMoviesUrl) { result in
