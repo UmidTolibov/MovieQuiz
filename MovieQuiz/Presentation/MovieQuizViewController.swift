@@ -52,7 +52,7 @@ final class MovieQuizViewController:UIViewController, QuestionFactoryDelegate{
         let model = AlertModel(title: "Ошибка",
                                message: errorMessage,
                                buttonText: "Попробовать еще раз") { [weak self] in
-            guard let self = self else { return }
+            guard let self else { return }
             
             self.currentQuestionIndex = 0
             self.correctAnswers = 0
@@ -137,7 +137,7 @@ final class MovieQuizViewController:UIViewController, QuestionFactoryDelegate{
             message: result.text,
             buttonText: result.buttonText,
             completionHandler: { [weak self] in
-                guard let self = self else { return }
+                guard let self  else { return }
                 self.currentQuestionIndex = 0
                 self.correctAnswers = 0
                 self.questionFactory?.requestNextQuestion()
@@ -170,13 +170,13 @@ final class MovieQuizViewController:UIViewController, QuestionFactoryDelegate{
     
     @IBAction private func yesButtonPressed(_ sender: UIButton) {
         sender.isEnabled = false
-        guard let currentQuestion = currentQuestion else { return }
+        guard let currentQuestion else { return }
         showAnswerResult(isCorrect: currentQuestion.correctAnswer)
     }
     
     @IBAction private func noButtonPressed(_ sender: UIButton) {
         sender.isEnabled = false
-        guard let currentQuestion = currentQuestion else { return }
+        guard let currentQuestion else { return }
         showAnswerResult(isCorrect: !currentQuestion.correctAnswer)
     }
 }
