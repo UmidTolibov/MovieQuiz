@@ -79,6 +79,7 @@ final class MovieQuizViewController:UIViewController, QuestionFactoryDelegate{
     }
     
     private func show(quiz step: QuizStepViewModel) {
+        hideLoadingIndicator()
         yesButton.isEnabled = true
         noButton.isEnabled = true
         previewImage.layer.borderColor = UIColor.clear.cgColor
@@ -153,7 +154,6 @@ final class MovieQuizViewController:UIViewController, QuestionFactoryDelegate{
         let viewModel = convert(model: question)
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
-            self.showLoadingIndicator()
             self.show(quiz: viewModel)
         }
     }
