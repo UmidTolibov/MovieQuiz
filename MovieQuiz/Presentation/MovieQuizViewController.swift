@@ -1,7 +1,8 @@
 import UIKit
 
-final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
+final class MovieQuizViewController:UIViewController, QuestionFactoryDelegate{
     
+     
     @IBOutlet private var questionTitleLabel: UILabel!
     @IBOutlet private var previewImage: UIImageView!
     @IBOutlet private var questionLabel: UILabel!
@@ -61,6 +62,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         alertPresenter?.show(alert: model)
         
     }
+    
     private func convert(model: QuizQuestion) -> QuizStepViewModel {
         guard let image = UIImage(data: model.image) else {
                 showNetworkError(message: "Не удалось загрузить изображение.")
@@ -75,6 +77,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
             question: model.text,
             questionNumber: "\(currentQuestionIndex + 1)/\(questionsAmount)")
     }
+    
     private func show(quiz step: QuizStepViewModel) {
         yesButton.isEnabled = true
         noButton.isEnabled = true
@@ -83,6 +86,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         questionLabel.text = step.question
         counterLabel.text = step.questionNumber
     }
+    
     private func showAnswerResult(isCorrect: Bool) {
         previewImage.layer.masksToBounds = true
         previewImage.layer.borderWidth = 8
@@ -96,6 +100,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
             self.showNextQuestionOrResults()
         }
     }
+    
     private func showNextQuestionOrResults() {
         print(currentQuestionIndex)
         if currentQuestionIndex >= questionsAmount - 1 {
@@ -126,6 +131,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
             questionFactory?.requestNextQuestion()
         }
     }
+    
     private func show(quiz result: QuizResultsViewModel) {
         let alert = AlertModel(
             title: result.title,
@@ -141,7 +147,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         alertPresenter?.show(alert: alert)
     }
     
-    func didReceiveNextQuestion(question: QuizQuestion?) {
+      func didReceiveNextQuestion(question: QuizQuestion?) {
        
         guard let question = question else {
             return

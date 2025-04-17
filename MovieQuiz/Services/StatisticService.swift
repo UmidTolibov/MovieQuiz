@@ -48,7 +48,6 @@ final class StatisticService: StatisticServiceProtocol {
         userDefaults.set(userDefaults.integer(forKey: Keys.correct) + count, forKey: Keys.correct)
         userDefaults.set(userDefaults.integer(forKey: Keys.total) + amount, forKey: Keys.total)
         gamesCount += 1
-        
         let currentGame = GameResult(correct: count, total: amount, date: Date())
         if currentGame.isBetter(than: bestGame) {
             bestGame = currentGame

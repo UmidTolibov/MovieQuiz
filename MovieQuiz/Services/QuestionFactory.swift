@@ -9,19 +9,16 @@ import Foundation
 
 
 
-class QuestionFactory: QuestionFactoryProtocol {
+class QuestionFactory:QuestionFactoryProtocol {
     
     private let moviesLoader: MoviesLoading
-    
     private weak var delegate: QuestionFactoryDelegate?
+    private var movies: [MostPopularMovie] = []
     
     init(moviesLoader: MoviesLoading, delegate: QuestionFactoryDelegate?) {
         self.moviesLoader = moviesLoader
         self.delegate = delegate
     }
-    
-    private var movies: [MostPopularMovie] = []
-    
     /*  private let questions: [QuizQuestion] = [
      
      QuizQuestion(image: "The Godfather",
@@ -56,8 +53,6 @@ class QuestionFactory: QuestionFactoryProtocol {
      correctAnswer: false),
      
      ]*/
-    
-    
     func loadData() {
         moviesLoader.loadMovies { [weak self] result in
             DispatchQueue.main.async {
@@ -73,16 +68,12 @@ class QuestionFactory: QuestionFactoryProtocol {
         }
     }
     
-    
     func requestNextQuestion() {
         DispatchQueue.global().async { [weak self] in
             guard let self = self else { return }
             let index = (0..<self.movies.count).randomElement() ?? 0
-            
             guard let movie = self.movies[safe: index] else { return }
-            
             var imageData = Data()
-            
             do {
                 imageData = try Data(contentsOf: movie.resizedImageURL)
             } catch {
@@ -92,9 +83,6 @@ class QuestionFactory: QuestionFactoryProtocol {
             
             let text = "Рейтинг этого фильма больше чем 7?"
             let correctAnswer = rating > 7
-            
-            
-            
             let question = QuizQuestion(image: imageData,
                                         text: text,
                                         correctAnswer: correctAnswer)
